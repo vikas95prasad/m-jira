@@ -1,7 +1,7 @@
 class Todo < ApplicationRecord
   belongs_to :project
-  has_many :user_tasks, foreign_key: "assigned_task_id"
-  has_many :assigned_users, through: :user_tasks
+  has_many :user_todos, foreign_key: "assigned_todo_id"
+  has_many :assigned_users, through: :user_todos
   belongs_to :owner, class_name: "User"
 
   validates :name, :description, :due_date, :status, :project_id, presence: true
