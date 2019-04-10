@@ -1,10 +1,9 @@
 class Todo < ApplicationRecord
   belongs_to :project
-  has_many :user_todos, foreign_key: "assigned_todo_id"
-  has_many :assigned_users, through: :user_todos
   belongs_to :owner, class_name: "User"
+  belongs_to :developer, class_name: "User"
 
-  validates :name, :description, :due_date, :status, :project_id, presence: true
+  validates :title, :description, :due_date, :status, :project_id, :owner_id, presence: true
 
   enum status: [:active, :complete]
 

@@ -1,7 +1,8 @@
 class Project < ApplicationRecord
   has_many :todos
-  has_many :user_projects, foreign_key: "collaboration_project_id"
-  has_many :collaborators, through: :user_projects
+  has_many :user_projects, foreign_key: "developer_project_id"
+  has_many :developers, through: :user_projects
+  
   belongs_to :owner, class_name: "User"
 
   validates :name, :description, :due_date, :status, presence: true 

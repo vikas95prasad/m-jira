@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_180900) do
+ActiveRecord::Schema.define(version: 2019_04_09_180500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,30 +29,23 @@ ActiveRecord::Schema.define(version: 2019_04_09_180900) do
   create_table "todos", force: :cascade do |t|
     t.bigint "project_id"
     t.bigint "owner_id"
+    t.bigint "developer_id"
     t.string "title"
     t.text "description"
     t.date "due_date"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["developer_id"], name: "index_todos_on_developer_id"
     t.index ["owner_id"], name: "index_todos_on_owner_id"
     t.index ["project_id"], name: "index_todos_on_project_id"
   end
 
   create_table "user_projects", force: :cascade do |t|
-    t.bigint "collaborator_id"
-    t.bigint "collaboration_project_id"
-    t.index ["collaboration_project_id"], name: "index_user_projects_on_collaboration_project_id"
-    t.index ["collaborator_id"], name: "index_user_projects_on_collaborator_id"
-  end
-
-  create_table "user_todos", force: :cascade do |t|
-    t.bigint "assigned_user_id"
-    t.bigint "assigned_todo_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["assigned_todo_id"], name: "index_user_todos_on_assigned_todo_id"
-    t.index ["assigned_user_id"], name: "index_user_todos_on_assigned_user_id"
+    t.bigint "developer_id"
+    t.bigint "developer_project_id"
+    t.index ["developer_id"], name: "index_user_projects_on_developer_id"
+    t.index ["developer_project_id"], name: "index_user_projects_on_developer_project_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -64,8 +57,12 @@ ActiveRecord::Schema.define(version: 2019_04_09_180900) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
+    t.string "username"
+    t.string "image"
+    t.text "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

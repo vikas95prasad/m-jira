@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-
+    @project.owner = current_user unless @project.owner
     if @project.save
       render :show, status: :created, location: @project
     else

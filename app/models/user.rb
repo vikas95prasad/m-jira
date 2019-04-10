@@ -5,14 +5,20 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :projects
-
-  has_many :user_projects, foreign_key: "collaborator_id"
+  has_many :user_projects, foreign_key: "developer_id"
   has_many :projects, foreign_key: "owner_id"
-  has_many :collaboration_projects, through: :user_projects
+  has_many :developer_projects, through: :user_projects
 
-  has_many :assigned_todos, through: :user_todos
-  has_many :user_todos, foreign_key: "assigned_user_id"
-  has_many :todos, foreign_key: "owner_id"
-  
+  has_many :todos, foreign_key: "developer_id"
+
   enum role: [:developer, :admin]
+
+  validates :username, uniqueness: { case_sensitive: false }, presence: true, allow_blank: false, format: { with: /\A[a-zA-Z0-9]+\z/ }
+
+
+  def generate_jwt
+    JWT.encode({ id: id,
+                exp: 60.days.from_now.to_i },
+               Rails.application.secrets.secret_key_base)
+  end
 end
