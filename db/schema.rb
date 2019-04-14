@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 2019_04_09_180500) do
   end
 
   create_table "user_projects", force: :cascade do |t|
-    t.bigint "developer_id"
-    t.bigint "developer_project_id"
-    t.index ["developer_id"], name: "index_user_projects_on_developer_id"
-    t.index ["developer_project_id"], name: "index_user_projects_on_developer_project_id"
+    t.bigint "user_id"
+    t.bigint "user_project_id"
+    t.index ["user_id"], name: "index_user_projects_on_user_id"
+    t.index ["user_project_id"], name: "index_user_projects_on_user_project_id"
   end
 
   create_table "users", force: :cascade do |t|

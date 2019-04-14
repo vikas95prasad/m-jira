@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
   has_many :todos
-  has_many :user_projects, foreign_key: "developer_project_id"
+  has_many :user_projects, foreign_key: "user_project_id"
   has_many :developers, through: :user_projects
   
   belongs_to :owner, class_name: "User"
