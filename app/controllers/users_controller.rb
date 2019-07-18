@@ -22,6 +22,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def generate_report
+    @developer_report = User.developer_report
+    @project_report = User.project_report
+    @developers = User.where(role: 'developer').select('id, email').to_a
+    @status_count_report = Todo.status_count_report
+  end
+
   private
 
   def user_params

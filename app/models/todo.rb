@@ -10,4 +10,8 @@ class Todo < ApplicationRecord
   scope :complete, -> { where(status: 1) }
   scope :active, -> { where(status: 0)}
   scope :overdue, -> { where("due_date < ? AND status = ?", Date.today, 0)}
+
+  def self.status_count_report
+    Todo.group(:status).count
+  end
 end
