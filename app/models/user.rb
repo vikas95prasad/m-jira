@@ -24,26 +24,6 @@ class User < ApplicationRecord
   end
 
   def self.developer_report
-    # users_data = User.joins(:todos).where('users.id=todos.developer_id').select('users.id, users.email, todos.title, todos.status').to_a
-    # res = {}
-    # users_data.each do |data|
-    #   if data.status == 0
-    #     res['todo'] = [] if res['todo'].nil?
-    #     t = {user_id: data.id, user_email: data.email, todo_title: data.title}
-    #     res['todo'] << t
-    #   elsif data.status == 1
-    #     res['in_progress'] = [] if res['in_progress'].nil?
-    #     t = {user_id: data.id, user_email: data.email, todo_title: data.title}
-    #     res['in_progress'] << t
-    #   elsif data.status == 2
-    #     res['done'] = [] if res['done'].nil?
-    #     t = {user_id: data.id, user_email: data.email, todo_title: data.title}
-    #     res['done'] << t
-    #   end
-    # end
-    # return res
-
-
     report = {}
     report['todo'] = []
     report['in_progress'] = []

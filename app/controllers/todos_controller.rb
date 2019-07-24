@@ -4,7 +4,11 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.all
+    if current_user.role == 'admin'
+      @todos = Todo.all
+    else
+      @todos = Todo.where(developer_id: current_user.id)
+    end
   end
 
   # GET /todos/1
