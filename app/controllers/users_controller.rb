@@ -1,14 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user
+  before_action :authenticate_admin_user
 
   def index
-    # if current_user.role == 'admin'
-      # if params[:role].present? 
-        @users = User.where(role: 'developer')
-      # end
-    # else
-      # render json: { errors: 'Not a admin user' }, status: :unauthorised
-    # end
+    @users = User.where(role: 'developer')
   end
 
   def show

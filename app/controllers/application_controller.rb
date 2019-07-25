@@ -45,4 +45,8 @@ class ApplicationController < ActionController::API
   def signed_in?
     @current_user_id.present?
   end
+
+  def authenticate_admin_user
+    head :unauthorized unless current_user.role == 'admin'
+  end
 end
