@@ -1,24 +1,10 @@
-# README
+# Project Management Software.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+F.E : https://github.com/vikas95prasad/m-jira-reactjs
 
-Things you may want to cover:
+Stack : Ruby On Rails, Reactjs + Redux, Devise (JWT) Authentication, Google Chart APIs
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- System with two roles admin and developer.
+- As an Admin, create projects and todos for projects and assign them to developers.
+- Generate reports and analytics for admin.
+- As a developer, add activity to todos. 
